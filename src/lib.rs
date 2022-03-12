@@ -15,6 +15,7 @@ impl<const N: usize> UnrollImpl for Const<N> {
 macro_rules! unroll_impl {
     ($n:expr) => {
         impl UnrollImpl for Const<$n> {
+            #[inline(always)]
             fn unroll<F: FnMut()>(mut f: F) {
                 seq_macro::seq!(N in 0..$n{ f(); });
             }
@@ -29,6 +30,7 @@ seq_macro::seq!(N in 1.. =256 {unroll_impl!(N);});
 
 /// Call the function `f` `N` times. This is guaranteed to get unrolled.
 /// Values of `N` up to `256` are supported.
+#[inline(always)]
 pub fn unroll<const N: usize, F: FnMut()>(f: F) {
     Const::<N>::unroll(f);
 }
