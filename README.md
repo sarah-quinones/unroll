@@ -1,11 +1,11 @@
-`unroll`
+`unroll-fn`
 ======
 
 An generic unroll function that takes a callable and calls it `N` times.
 
 ```toml
 [dependencies]
-unroll = "0.1"
+unroll-fn = "0.1"
 ```
 
 ```rust
